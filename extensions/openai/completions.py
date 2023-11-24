@@ -25,7 +25,7 @@ class LogitsBiasProcessor(LogitsProcessor):
         if self.logit_bias:
             self.keys = list([int(key) for key in self.logit_bias.keys()])
             values = [self.logit_bias[str(key)] for key in self.keys]
-            self.values = torch.tensor(values, dtype=torch.float, device=shared.model.device)
+            self.values = torch.tensor(values, dtype=torch.float, device="cuda")
             debug_msg(f"{self})")
 
     def __call__(self, input_ids: torch.LongTensor, logits: torch.FloatTensor) -> torch.FloatTensor:
